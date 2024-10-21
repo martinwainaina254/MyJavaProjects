@@ -1,37 +1,9 @@
-/*
->> Extended Version.
- * Welcome to CodeXoft Bank?
- * 1. Create an Account.
- * 2. Learn more
- * 
- * Create an account.
- * > Enter your name?
- * > Create new pin.
- * 
- * Welcome Back [name], to CodeXoft Bank?
- * 1. Change Pin.
- *      > Enter New Pin.
- * 2. Deposit Amount.
- *      > Enter amount.
- * 3. Withdraw amount.
- *      > Enter amount.
- */
-
-/*
->> Basic Version.
-* Welcome Back [name], to CodeXoft Bank?
-* 1. Change Pin.
-*      > Enter New Pin.
-* 2. Deposit Amount.
-*      > Enter amount.
-* 3. Withdraw amount.
-*      > Enter amount.
- */
 import java.util.Scanner;
 
 class AtmMachine {
     public static void main(String[] arg) {
 
+        /** Declaraction Of Variables */
         int enteredPin;
         int activeOption;
         int accountPin = 0000;
@@ -39,34 +11,37 @@ class AtmMachine {
         int accountBalance = 1000;
         boolean terminated = false;
 
+        /** Initiating Of The Scanner */
         Scanner obj = new Scanner(System.in);
 
+        /** Registering Member */
         System.out.println("Lets start with your name: ");
         String name = obj.nextLine();
 
         System.out.println("\nEnter new account pin: ");
         accountPin = obj.nextInt();
 
-        System.out
-                .println("\n> Conglatulations 🤩 " + name
-                        + ", We have awarded you Kshs 1000/= for registering on our Bank.\n");
+        System.out.println("\n> Conglatulations 🤩 " + name+ ", We have awarded you Kshs 1000/= for registering on our Bank.\n");
+
+        /** Excecute Until The User Terminates */
         while (!terminated) {
             System.out.println("Welcome Back " + name + " 👋 to CodeXoft Bank.");
-            System.out.print(
-                    "1. Deposit amount\n2. Withdraw amount\n3. View account balance.\n4. Change account pin\n0. Exit\n\nEnter option: ");
+            System.out.print("1. Deposit amount\n2. Withdraw amount\n3. View account balance.\n4. Change account pin\n0. Exit\n\nEnter option: ");
             activeOption = obj.nextInt();
             switch (activeOption) {
                 case 1:
+
+                    /**Depositing Amount*/
                     System.out.print("Enter amount to deposit: ");
                     int deposit = obj.nextInt();
                     accountBalance += deposit;
-                    System.out.println("\n> TRANS-" + transactionCode + " Confirmed. Amount of Kshs " + deposit
-                            + "/= has been deposited. New Account balance is Kshs "
-                            + accountBalance + "/=\n");
+                    System.out.println("\n> TRANS-" + transactionCode + " Confirmed. Amount of Kshs " + deposit+ "/= has been deposited. New Account balance is Kshs "+ accountBalance + "/=\n");
                     transactionCode++;
                     break;
 
                 case 2:
+
+                    /**Withdrawing Amount*/
                     System.out.print("Enter amount to withdraw: ");
                     int withdraw = obj.nextInt();
                     System.out.print("Enter your account pin: ");
@@ -76,27 +51,23 @@ class AtmMachine {
                         enteredPin = obj.nextInt();
                     }
                     if (withdraw > accountBalance) {
-                        System.out
-                                .println(
-                                        "\n> You have insufficient amount on your account to initiate this withdraw .Account balance is Kshs "
-                                                + accountBalance
-                                                + "/=\n");
+                        System.out.println("\n> You have insufficient amount on your account to initiate this withdraw .Account balance is Kshs "+ accountBalance+ "/=\n");
                     } else {
                         accountBalance -= withdraw;
-                        System.out.println(
-                                "\n> TRANS-" + transactionCode + " Confirmed. Congratulations. Amount of Kshs "
-                                        + withdraw
-                                        + "/= has been withdrawn. New Account balance is Kshs "
-                                        + accountBalance + "/=\n");
+                        System.out.println("\n> TRANS-" + transactionCode + " Confirmed. Congratulations. Amount of Kshs "+ withdraw+ "/= has been withdrawn. New Account balance is Kshs "+ accountBalance + "/=\n");
                     }
                     transactionCode++;
                     break;
 
                 case 3:
+
+                    /**Account Balance*/
                     System.out.println("\n> Your account balance is: Kshs " + accountBalance + "/=\n");
                     break;
 
                 case 4:
+
+                    /**Changing Account Pin*/
                     System.out.println("\nEnter old pin?");
                     enteredPin = obj.nextInt();
                     while (accountPin != enteredPin) {
@@ -109,6 +80,8 @@ class AtmMachine {
                     break;
 
                 case 0:
+
+                    /**Terminating Program*/
                     System.out.println("Are you sure you want to leave 🥺?\n1. Yes\n2. No");
                     activeOption = obj.nextInt();
                     switch (activeOption) {
